@@ -2,8 +2,7 @@
 // totdat we een meerstandenschakelaar (of iets dergelijks) hebben :P
 
 
-const int fader_max = 890;
-const int steps = 13;
+const int num_images = 15;
 
 const byte images[] = {
     2, 0, 4, 1,    //  X
@@ -15,6 +14,8 @@ const byte images[] = {
     1, 0, 90, 1,   //  90
     1, 0, 100, 3,  // (100)
     1, 0, 120, 3,  // (120)
+    1, 0, 100, 2,  // *100*
+    1, 0, 120, 2,  // *120*
     2, 0, 1, 2,    // *<*
     2, 0, 2, 2,    // *>*
     2, 0, 3, 1,    // v
@@ -38,16 +39,12 @@ void setup () {
 }
 
 void loop () {
-    delay(100);
-    int f = analogRead(0);
-
-    int s = (fader_max - f) / (fader_max / steps);
-    if (s > (steps - 1)) s = steps - 1;
-    if (s < 0) s = 0;
-
+    int n = random() % num_images;
     static int old = -1;
-    if (s != old) {
-        show(s);
-        old = s;
+    if (n != old) {
+        show(n);
+//        Serial.println(n);
+        old = n;
+        delay(100);
     }
 }
