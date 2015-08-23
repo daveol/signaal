@@ -1,10 +1,10 @@
-const int num_images = 15;
+#include <Entropy.h>
+
+const int num_images = 13;
 
 const byte images[] = {
     2, 0, 4, 1,    //  X
-    1, 0, 50, 1,   //  50
     1, 0, 50, 2,   // *50*
-    1, 0, 70, 1,   //  70
     1, 0, 70, 2,   // *70*
     1, 0, 80, 3,   // (80)
     1, 0, 90, 1,   //  90
@@ -15,7 +15,7 @@ const byte images[] = {
     2, 0, 1, 2,    // *<*
     2, 0, 2, 2,    // *>*
     2, 0, 3, 1,    // v
-    255, 0, 2, 1   // (/)
+    255, 0, 2, 1,  // (/)
 };
 
 void show (int s) {
@@ -32,15 +32,16 @@ void show (int s) {
 
 void setup () {
     Serial.begin(9600);
+    Entropy.Initialize();
 }
 
 void loop () {
-    int n = random() % num_images;
+    int n = Entropy.random(num_images);
     static int old = -1;
     if (n != old) {
         show(n);
 //        Serial.println(n);
         old = n;
-        delay(100);
+        delay(50);
     }
 }
