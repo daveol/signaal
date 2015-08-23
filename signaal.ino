@@ -1,7 +1,3 @@
-// Simpele sketch om de matrixsignaalgever met een schuifpotmeter te besturen,
-// totdat we een meerstandenschakelaar (of iets dergelijks) hebben :P
-
-
 const int num_images = 15;
 
 const byte images[] = {
